@@ -1,5 +1,10 @@
 require "csv" # CSVファイルを扱うためのライブラリを読み込んでいます
 
+# 定数定義
+NEW_MEMO_CREATION = 1
+EXISTING_MEMO_OVERWRITING = 2
+
+
 puts "1 → 新規でメモを作成する / 2 → 既存のメモを編集する"
 
 memo_type = gets.to_i # ユーザーの入力値を取得し、数字へ変換しています
@@ -70,11 +75,11 @@ def select_csv_for_editing
   end
 end
 
-if memo_type == 1
+if memo_type == NEW_MEMO_CREATION
   puts "ファイル名を入力してください（拡張子は不要です）:"
   create_file_name = gets.chomp
   prompt_and_create_csv(create_file_name)
-elsif memo_type == 2
+elsif memo_type == EXISTING_MEMO_OVERWRITING
   selected_file = select_csv_for_editing
   prompt_and_overwrite_csv(selected_file) if selected_file
 else
